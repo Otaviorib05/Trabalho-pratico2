@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadastro - IronPump</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+<header id="nav"></header>
+<main class="container py-4">
+  <div class="d-flex justify-content-between mb-3">
+    <h2>Cadastro de exercícios</h2>
+    <button class="btn btn-warning" onclick="abrir()">Novo exercício</button>
+  </div>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead><tr><th>Título</th><th>Grupo</th><th>Nível</th><th>Destaque</th><th></th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+</main>
+
+<div class="modal fade" id="modal">
+  <div class="modal-dialog modal-lg">
+    <form class="modal-content" id="f">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mt"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body row g-2">
+        <input type="hidden" id="id">
+        <div class="col-md-6"><input id="titulo" class="form-control" placeholder="Título" required></div>
+        <div class="col-md-3">
+          <select id="grupo" class="form-select">
+            <option>Peito</option><option>Costas</option><option>Pernas</option>
+            <option>Ombros</option><option>Braços</option><option>Abdômen</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select id="nivel" class="form-select">
+            <option>Iniciante</option><option>Intermediário</option><option>Avançado</option>
+          </select>
+        </div>
+        <div class="col-md-6"><input id="equipamento" class="form-control" placeholder="Equipamento"></div>
+        <div class="col-md-3"><input id="series" type="number" min="1" class="form-control" placeholder="Séries"></div>
+        <div class="col-md-3"><input id="repeticoes" class="form-control" placeholder="Repetições"></div>
+        <div class="col-12"><input id="imagem" class="form-control" placeholder="URL da imagem"></div>
+        <div class="col-12"><textarea id="descricao" class="form-control" rows="2" placeholder="Descrição" required></textarea></div>
+        <div class="col-12"><textarea id="dica" class="form-control" rows="2" placeholder="Dica de execução"></textarea></div>
+        <div class="col-12 form-check ms-2">
+          <input type="checkbox" id="destaque" class="form-check-input">
+          <label class="form-check-label" for="destaque">Exibir no carrossel de destaques</label>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-warning">Salvar</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script>
+const u = usuario();
+if (!u || !u.admin) location = 'index.html';
+navbar();
+
+const campos = ['titulo','grupo','nivel','equipamento','series','repeticoes','imagem','descricao','dica'];
+const modal = () => bootstrap.Modal.getOrCreateInstance(document.getElementById('modal'));
+let lista = [];
+
+async function carregar() {
+  lista = await get('/exercicios');
+  rows.innerHTML = lista.map(e => `<tr>
+    <td>${esc(e.titulo)}</td><td>${esc(e.grupo)}</td><td>${esc(e.nivel)}</td><td>${e.destaque ? 'Sim' : 'Não'}</td>
+    <td class="text-end">
+      <a class="btn btn-sm btn-outline-secondary" href="detalhes.html?id=${e.id}">Ver</a>
+      <button class="btn btn-sm btn-outline-warning" onclick="abrir('${e.id}')">Editar</button>
+      <button class="btn btn-sm btn-outline-danger" onclick="excluir('${e.id}')">Excluir</button>
+    </td></tr>`).join('');
+}
+
+function abrir(i) {
+  const e = lista.find(x => String(x.id) === String(i)) || {};
+  mt.textContent = i ? 'Editar exercício' : 'Novo exercício';
+  id.value = i || '';
+  campos.forEach(c => {
+    const el = document.getElementById(c);
+    el.value = e[c] ?? (el.tagName === 'SELECT' ? el.options[0].value : '');
+  });
+  destaque.checked = !!e.destaque;
+  modal().show();
+}
+
+f.onsubmit = async ev => {
+  ev.preventDefault();
+  const o = {destaque: destaque.checked};
+  campos.forEach(c => o[c] = document.getElementById(c).value);
+  o.series = Number(o.series) || 0;
+  o.imagem = o.imagem || 'https://placehold.co/800x500/1c1c1c/ffc107?text=' + encodeURIComponent(o.titulo);
+  if (id.value) await send('/exercicios/' + id.value, 'PUT', {...o, id: id.value});
+  else await send('/exercicios', 'POST', o);
+  modal().hide();
+  carregar();
+};
+
+async function excluir(i) {
+  if (confirm('Excluir este exercício?')) {
+    await send('/exercicios/' + i, 'DELETE');
+    carregar();
+  }
+}
+
+carregar();
+</script>
+</body>
+</html>
