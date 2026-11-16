@@ -1,0 +1,139 @@
+{
+  "usuarios": [
+    {
+      "id": "187cb7e5-e097-4224-8bc7-b610c855e2b1",
+      "login": "admin",
+      "senha": "123",
+      "nome": "Administrador do Sistema",
+      "email": "admin@abc.com",
+      "admin": true,
+      "favoritos": [
+        "3"
+      ]
+    },
+    {
+      "id": "ec37c83d-4b7f-458d-9e10-3fda7d37cd3e",
+      "login": "user",
+      "senha": "123",
+      "nome": "Usuario Comum",
+      "email": "user@abc.com",
+      "admin": false,
+      "favoritos": []
+    },
+    {
+      "id": "605a2821-e701-4cfb-b060-5066779f4df8",
+      "login": "Otávio3",
+      "senha": "soueu",
+      "nome": "otavio ribeiro silva",
+      "email": "tataotavio637@gmail.com",
+      "admin": false,
+      "favoritos": []
+    }
+  ],
+  "exercicios": [
+    {
+      "id": "1",
+      "titulo": "Supino reto",
+      "grupo": "Peito",
+      "nivel": "Iniciante",
+      "equipamento": "Barra e banco",
+      "series": 4,
+      "repeticoes": "8-12",
+      "imagem": "../Images/Supinoreto.jpg",
+      "descricao": "Exercício base para desenvolver peitoral, ombros e tríceps.",
+      "dica": "Mantenha as escápulas retraídas e os pés firmes no chão.",
+      "destaque": true
+    },
+    {
+      "id": "2",
+      "titulo": "Agachamento livre",
+      "grupo": "Pernas",
+      "nivel": "Intermediário",
+      "equipamento": "Barra e rack",
+      "series": 4,
+      "repeticoes": "6-10",
+      "imagem": "../Images/Agachamento Livre.jpg",
+      "descricao": "Trabalha quadríceps, glúteos e posterior com grande ativação do core.",
+      "dica": "Desça até a coxa ficar paralela ao chão, joelhos alinhados aos pés.",
+      "destaque": true
+    },
+    {
+      "id": "3",
+      "titulo": "Levantamento terra",
+      "grupo": "Costas",
+      "nivel": "Avançado",
+      "equipamento": "Barra",
+      "series": 3,
+      "repeticoes": "5-8",
+      "imagem": "../Images/Levantamento terra.jpg",
+      "descricao": "Movimento completo que fortalece posterior de coxa, lombar e dorsais.",
+      "dica": "Coluna neutra e barra sempre próxima ao corpo.",
+      "destaque": true
+    },
+    {
+      "id": "4",
+      "titulo": "Puxada frontal",
+      "grupo": "Costas",
+      "nivel": "Iniciante",
+      "equipamento": "Polia alta",
+      "series": 4,
+      "repeticoes": "10-12",
+      "imagem": "../Images/Puxada frontal.jpg",
+      "descricao": "Foco em dorsais e bíceps, ótimo para evoluir até a barra fixa.",
+      "dica": "Puxe a barra em direção ao peito, sem balançar o tronco.",
+      "destaque": false
+    },
+    {
+      "id": "5",
+      "titulo": "Desenvolvimento com halteres",
+      "grupo": "Ombros",
+      "nivel": "Intermediário",
+      "equipamento": "Halteres e banco",
+      "series": 3,
+      "repeticoes": "8-12",
+      "imagem": "../Images/Desenvolvimento.jpg",
+      "descricao": "Fortalece deltoides e estabilizadores do ombro.",
+      "dica": "Não trave os cotovelos no topo do movimento.",
+      "destaque": false
+    },
+    {
+      "id": "6",
+      "titulo": "Rosca direta",
+      "grupo": "Braços",
+      "nivel": "Iniciante",
+      "equipamento": "Barra W",
+      "series": 3,
+      "repeticoes": "10-12",
+      "imagem": "../Images/Rosca direta.jpg",
+      "descricao": "Isola o bíceps braquial com carga progressiva.",
+      "dica": "Cotovelos colados ao corpo e sem impulso do tronco.",
+      "destaque": false
+    },
+    {
+      "id": "7",
+      "titulo": "Tríceps testa",
+      "grupo": "Braços",
+      "nivel": "Intermediário",
+      "equipamento": "Barra W e banco",
+      "series": 3,
+      "repeticoes": "10-12",
+      "imagem": "../Images/Tricepstesta.jpg",
+      "descricao": "Enfatiza a cabeça longa do tríceps.",
+      "dica": "Mova apenas os antebraços e mantenha os cotovelos fechados.",
+      "destaque": false
+    },
+    {
+      "id": "8",
+      "titulo": "Prancha abdominal",
+      "grupo": "Abdômen",
+      "nivel": "Iniciante",
+      "equipamento": "Peso corporal",
+      "series": 3,
+      "repeticoes": "30-60 s",
+      "imagem": "../Images/Prancha.jpg",
+      "descricao": "Isometria que fortalece o core e melhora a postura.",
+      "dica": "Contraia glúteos e abdômen, evitando afundar o quadril.",
+      "destaque": false
+    }
+  ]
+}

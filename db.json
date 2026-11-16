@@ -7,7 +7,9 @@
       "nome": "Administrador do Sistema",
       "email": "admin@abc.com",
       "admin": true,
-      "favoritos": []
+      "favoritos": [
+        "3"
+      ]
     },
     {
       "id": "ec37c83d-4b7f-458d-9e10-3fda7d37cd3e",

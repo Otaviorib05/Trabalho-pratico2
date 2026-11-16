@@ -1,0 +1,11 @@
+{
+  "name": "trabalho-pratico2",
+  "version": "1.0.0",
+  "description": "IRONPUMP - site de exercícios com backend JSON Server",
+  "scripts": {
+    "start": "json-server --watch db/db.json --static ./public --port 3000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}
